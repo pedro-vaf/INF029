@@ -93,8 +93,9 @@ void imprimir(){
     No *temp; /* Ponteiro temporário */
     temp = topo;
     printf("\n*** Imprimindo Pilha ***\n");
-    while (temp != NULL) /* Significa que a pilha tem valor */
-    {
+    if (temp == NULL){
+        printf("A pilha se encontra vazia\n");
+    } else {
         printf("%d \n", temp -> dado);
         temp = temp -> proximo;
     }
