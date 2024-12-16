@@ -65,10 +65,14 @@ void push(){
 
     printf("*** Empilhando ***\n");
     No *novoValor = malloc(sizeof(No));
-    novoValor -> dado = valor;
-    novoValor -> proximo = topo;
-    topo = novoValor;
-
+    if (novoValor == NULL){
+        printf("Erro ao alocar memória\n");
+    } else {
+        novoValor -> dado = valor;
+        novoValor -> proximo = topo;
+        topo = novoValor;
+    }
+    
     printf("Valor %d Empilhado\n", novoValor -> dado);
 }
 
