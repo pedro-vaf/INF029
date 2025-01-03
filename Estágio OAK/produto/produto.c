@@ -20,7 +20,7 @@ int cadastro(Produto listaProduto[], int *totalProduto){
     }
     /* O if acima garante que o nome inserido tenha o terminador padr√£o de string em C */
 
-    printf("Insira a descriÁ„o do Produto (m·ximo 500 caracteres) -> ");
+    printf("Insira a descri√ß√£o do Produto (m√°ximo 500 caracteres) -> ");
     fgets(listaProduto[*totalProduto].sinopse, 500, stdin);
     tamanhoString = strlen(listaProduto[*totalProduto].sinopse) - 1;
     if (listaProduto[*totalProduto].sinopse[tamanhoString] == '\n'){
@@ -32,7 +32,7 @@ int cadastro(Produto listaProduto[], int *totalProduto){
     listaProduto[*totalProduto].valor = valor_c;
     getchar(); // Remove o '\n' residual no buffer do teclado
 
-    printf("Produto disponÌvel para venda? [sim] \\ [n„o] -> ");
+    printf("Produto dispon√≠vel para venda? [sim] \\ [n√£o] -> ");
     fgets(status_c, 4, stdin);
 
     // Remover o '\n' que o fgets pode capturar
@@ -43,10 +43,10 @@ int cadastro(Produto listaProduto[], int *totalProduto){
 
     if (strcmp(status_c, "sim") == 0) {
         listaProduto[*totalProduto].status = true;
-    } else if (strcmp(status_c, "n„o") == 0 || strcmp(status_c, "nao") == 0) {
+    } else if (strcmp(status_c, "n√£o") == 0 || strcmp(status_c, "nao") == 0) {
         listaProduto[*totalProduto].status = false;
     } else {
-        printf("Entrada inv·lida para o status do produto. ser· marcado como 'n„o'.\n");
+        printf("Entrada inv√°lida para o status do produto. ser√° marcado como 'n√£o'.\n");
         listaProduto[*totalProduto].status = false;
     }
 
@@ -55,13 +55,13 @@ int cadastro(Produto listaProduto[], int *totalProduto){
 }   
 
 /* Ordena a listagem de produtos em ordem crescente de valor, usando o bubble sort */ 
-/* Poderia usar outras formas de ordenar, mas a escolha foi baseada no complexidade mais eficientes, h· outras
+/* Poderia usar outras formas de ordenar, mas a escolha foi baseada no complexidade mais eficientes, h√° outras
 maneiras que podem ser usadas como o quick sort ou mergesort, com complexidade O(nlogn) */
 void ordenarListagem(Produto listaProduto[], int *totalProduto){
     for (int icont = 0; icont < *totalProduto - 1; icont = icont + 1){
         for (int jcont = 0; jcont < *totalProduto - icont - 1; jcont = jcont + 1){
             if (listaProduto[jcont].valor > listaProduto[jcont + 1].valor){
-                // Trocar os produtos de posiÁıes
+                // Trocar os produtos de posi√ß√µes
                 Produto temp = listaProduto[jcont];
                 listaProduto[jcont] = listaProduto[jcont + 1];
                 listaProduto[jcont + 1] = temp;
@@ -73,7 +73,7 @@ void ordenarListagem(Produto listaProduto[], int *totalProduto){
 int listagem (Produto listaProduto[], int *totalProduto, int *opcao){
 
     if (*totalProduto <= 0){
-        printf("\nAinda n„o h· produtos cadastrados\n");
+        printf("\nAinda n√£o h√° produtos cadastrados\n");
         return listaVazia;
     }
 
@@ -85,33 +85,33 @@ int listagem (Produto listaProduto[], int *totalProduto, int *opcao){
     char status_c[4];
     size_t tamanhoString;
 
-    /* O if sÛ ir· aparecer quando o usu·rio desejar listar novamente os produtos */
+    /* O if s√≥ ir√° aparecer quando o usu√°rio desejar listar novamente os produtos */
     if (*opcao == 2) {
-        printf("\nDeseja cadastrar um novo produto agora? [sim] \\ [n„o] -> ");
+        printf("\nDeseja cadastrar um novo produto agora? [sim] \\ [n√£o] -> ");
 
-        // Limpar o buffer de entrada antes de capturar a resposta do usu·rio
+        // Limpar o buffer de entrada antes de capturar a resposta do usu√°rio
         fflush(stdin);  // Limpa o buffer para evitar capturar caracteres antigos
 
         fgets(status_c, 4, stdin);
         getchar();
 
-        // Remover o '\n' que o fgets pode capturar e remover espaÁos em branco
+        // Remover o '\n' que o fgets pode capturar e remover espa√ßos em branco
         tamanhoString = strlen(status_c);
         if (status_c[tamanhoString - 1] == '\n') {
             status_c[tamanhoString - 1] = '\0';
         }
 
-        // Verificar se a resposta È "sim" ou "n„o" (considerando "nao" como uma alternativa sem acento)
+        // Verificar se a resposta √© "sim" ou "n√£o" (considerando "nao" como uma alternativa sem acento)
         if (strcmp(status_c, "sim") == 0) {
             cadastro(listaProduto, totalProduto);
             ordenarListagem(listaProduto, totalProduto);
             listagem(listaProduto, totalProduto, opcao);
-        } else if (strcmp(status_c, "n„o") == 0 || strcmp(status_c, "nao") == 0) {
+        } else if (strcmp(status_c, "n√£o") == 0 || strcmp(status_c, "nao") == 0) {
             printf("Voltando ao menu principal.\n");
             *opcao = 0; /* Para voltar ao menu principal e continuar o programa */
         } else {
-            // Caso a entrada seja inv·lida
-            printf("Entrada inv·lida. Por favor, digite 'sim' ou 'n„o'.\n");
+            // Caso a entrada seja inv√°lida
+            printf("Entrada inv√°lida. Por favor, digite 'sim' ou 'n√£o'.\n");
         }
     }
 }
