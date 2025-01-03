@@ -44,10 +44,10 @@ void removerFila (No **fila){
 void imprimirfila(No *fila){
     printf("\n**** Elementos da fila ****\n");
     while (fila != NULL) {
-        printf("%d\n", fila -> valor);
+        printf("%d ", fila -> valor);
         fila = fila -> proximo;
     } 
-    printf("**** Fim da fila ****\n");
+    printf("\n**** Fim da fila ****\n");
 }
 
 int menuFila(int opcao){
