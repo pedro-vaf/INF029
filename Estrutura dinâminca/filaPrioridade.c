@@ -135,7 +135,7 @@ int main(){
             break;
 
             default:
-                printf("\nErro!\n");
+                printf("\nErro...\n");
             break;
         }
     } while (opcao != 5);
