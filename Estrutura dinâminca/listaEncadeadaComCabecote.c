@@ -113,6 +113,50 @@ void inserirOrdenado (Lista * lista){
     } else { printf("Erro ao alocar memória!\n"); }
 }
 
+/* Procedimento para remover o primeiro elemento da lista */
+void removerLista (Lista * lista){
+    No * remover = NULL;
+    if (lista != NULL){
+        remover = lista -> inicio;
+        printf ("\nO valor %d foi removido da lista\n", remover -> valor);
+        lista -> inicio = remover -> proximo;
+        free(remover);
+        lista -> tamanho--;
+    } else { printf("\nLista Vazia\n"); }
+}
+
+/* Procedimento para remover valor especifico da lista */
+void removerValorEspecifoLista(Lista * lista){
+    int num;
+    printf("\nInsira o valor ordenado na lista -> ");
+    scanf("%d", &num);
+
+    No * remover, * temp = NULL;
+    if (lista -> inicio != NULL){
+        if (lista -> inicio -> valor == num){
+            remover = lista -> inicio;
+            printf("\nO elemento %d foi removido da lista\n", num);
+            lista -> inicio = remover -> proximo;
+            free(remover);
+            lista -> tamanho--;
+        } else {
+            temp = lista -> inicio;
+            while (temp -> proximo && temp -> proximo -> valor != num) {
+                temp = temp -> proximo;
+            }
+
+            if (temp -> proximo){
+                remover = temp -> proximo;
+                temp -> proximo = remover -> proximo;
+                printf("\nO elemento %d foi removido da lista\n", remover -> valor);
+                free(remover);
+                lista -> tamanho--;
+            } else { printf("\nO elemento %d não foi encontrado", num); }
+            
+        }
+    } else { printf("\nLista Vazia\n"); }
+}
+
 /* Procedimento para imprimir a lista encadeada */
 void imprimirLista(No *lista){
     printf("\n**** Elementos da lista ****\n");
@@ -140,9 +184,11 @@ int menuLista(int opcao){
     printf("1 - Inserir elemento no inicio da lista\n");
     printf("2 - Inserir elemento no meio da lista\n");
     printf("3 - Inserir elemento no final da lista\n");
-    printf("4 - Inserir ordenado na lista\n");
+    printf("4 - Inserir elementos ordenado na lista\n");
     printf("5 - Imprimir elementos da lista\n");
-    printf("6 - Sair\n");
+    printf("6 - Remover o primeiro elemento da lista\n");
+    printf("7 - Remover um elemento específico na lista\n");
+    printf("8 - Sair\n");
     printf("Insira o numero referente -> ");
     scanf("%d", &opcao);
     return opcao;
@@ -178,6 +224,14 @@ int main(){
             break;
 
             case 6:
+                removerLista(&lista);
+            break;
+
+            case 7:
+                removerValorEspecifoLista(&lista);
+            break;
+
+            case 8:
                 printf("\nSaindo...\n");
             break;
         
@@ -186,7 +240,7 @@ int main(){
             break;
         }
 
-    } while (opcao != 6);
+    } while (opcao != 8);
 
     liberarLista(&lista);
     return 0;

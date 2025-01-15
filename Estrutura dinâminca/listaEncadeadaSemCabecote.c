@@ -114,12 +114,12 @@ void imprimirLista(No *lista){
     printf("\n**** Fim da lista ****\n");
 }
 
-/* Procedimento para remover primeiro elemento da lista */
+/* Procedimento para remover o primeiro elemento da lista */
 void removerLista (No **lista){
     No * remover = NULL;
     if (*lista != NULL){
         remover = *lista;
-        printf("\nO valor %d foi removido da lista\n", remover -> valor);
+        printf("\nO elemento %d foi removido da lista\n", remover -> valor);
         *lista = remover -> proximo;
         free(remover);
     } else { printf("\nLista Vazia\n"); }
@@ -136,6 +136,7 @@ void removerValorEspecificoLista(No **lista){
     if (*lista != NULL){
         if ((*lista) -> valor == num){
             remover = *lista;
+            printf("\nO elemento %d foi removido da lista\n", remover -> valor);
             *lista = remover -> proximo;
             free(remover);
         } else {
@@ -147,9 +148,9 @@ void removerValorEspecificoLista(No **lista){
             if (temp -> proximo){
                 remover = temp -> proximo;
                 temp -> proximo = remover -> proximo;
-                printf("\nO valor %d foi removido da lista\n", remover -> valor);
+                printf("\nO elemento %d foi removido da lista\n", remover -> valor);
                 free(remover);
-            }
+            } else { printf("\nO elemento %d não foi encontrado", num); }
         }
     } else { printf("\nLista Vazia\n"); }
 }
