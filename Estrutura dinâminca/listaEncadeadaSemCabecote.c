@@ -86,6 +86,7 @@ void imprimirLista(No *lista){
     printf("\n**** Fim da lista ****\n");
 }
 
+
 /* Procedimento para liberar memória alocada para lista */
 void liberarLista(No **lista) {
     No *temp;

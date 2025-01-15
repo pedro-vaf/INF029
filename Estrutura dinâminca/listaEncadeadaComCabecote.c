@@ -44,7 +44,7 @@ void inserirFinalLista(Lista * lista){
         novo -> valor = num;
         novo -> proximo = NULL;
 
-        if (lista -> inicio == NULL) /* Ã‰ o primeiro? */ {
+        if (lista -> inicio == NULL) /* É o primeiro? */ {
             lista -> inicio = novo;
         } else {
             temp = lista -> inicio;
