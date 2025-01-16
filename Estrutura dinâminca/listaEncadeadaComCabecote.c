@@ -54,7 +54,7 @@ void inserirFinalLista(Lista * lista){
             temp -> proximo = novo;
         }
         lista -> tamanho++;
-    } else { printf("Erro ao alocar memÃ³ria!\n"); }
+    } else { printf("Erro ao alocar memória!\n"); }
 }
 
 /* Procedimento para inserir no meio da lista */
@@ -168,6 +168,26 @@ void imprimirLista(No *lista){
     printf("\n**** Fim da lista ****\n");
 }
 
+/* Procedimento para realizar uma busca na lista */
+void buscarLista(Lista * lista){
+    int num;
+    printf("\nInsira o valor a ser buscado na lista -> ");
+    scanf("%d", &num);
+
+    No * temp, * busca = NULL;
+
+    temp = lista -> inicio;
+
+    if (temp && temp -> valor != num){
+        temp = temp -> proximo;
+    }
+
+    if (temp != NULL){
+        busca = temp;
+        printf("\nO elemento %d foi encontrado\n", busca -> valor);
+    } else { printf("\nO elemento não existe na lista\n"); }
+}
+
 /* Procedimento para liberar memória alocada para lista */
 void liberarLista(Lista * lista) {
     No *temp;
@@ -188,7 +208,8 @@ int menuLista(int opcao){
     printf("5 - Imprimir elementos da lista\n");
     printf("6 - Remover o primeiro elemento da lista\n");
     printf("7 - Remover um elemento específico na lista\n");
-    printf("8 - Sair\n");
+    printf("8 - Buscar elemento na lista\n");
+    printf("9 - Sair\n");
     printf("Insira o numero referente -> ");
     scanf("%d", &opcao);
     return opcao;
@@ -232,6 +253,9 @@ int main(){
             break;
 
             case 8:
+                buscarLista(&lista);
+            break;
+            case 9:
                 printf("\nSaindo...\n");
             break;
         
@@ -240,7 +264,7 @@ int main(){
             break;
         }
 
-    } while (opcao != 8);
+    } while (opcao != 9);
 
     liberarLista(&lista);
     return 0;
