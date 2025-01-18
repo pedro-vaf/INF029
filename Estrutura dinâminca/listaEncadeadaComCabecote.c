@@ -13,9 +13,29 @@ typedef struct {
    int tamanho;
 } Lista;
 
+typedef struct {
+    No * inicioPar;
+    int tamanhoPar;
+} ListaPar;
+
+typedef struct {
+    No * inicioImpar;
+    int tamanhoImpar;
+} ListaImpar;
+
 void criarLista(Lista * lista){
     lista -> inicio = NULL;
     lista -> tamanho = 0;
+}
+
+void criarListaPar(ListaPar * listaPar){
+    listaPar -> inicioPar = NULL;
+    listaPar -> tamanhoPar = 0;
+}
+
+void criarListaImpar(ListaImpar * ListaImpar){
+    ListaImpar -> inicioImpar = NULL;
+    ListaImpar -> tamanhoImpar = 0;
 }
 
 /* Procedimento para inserir no inicio */
@@ -209,14 +229,20 @@ int menuLista(int opcao){
     printf("6 - Remover o primeiro elemento da lista\n");
     printf("7 - Remover um elemento específico na lista\n");
     printf("8 - Buscar elemento na lista\n");
-    printf("9 - Sair\n");
+    printf("10 - Sair\n");
     printf("Insira o numero referente -> ");
     scanf("%d", &opcao);
     return opcao;
 }
 int main(){
     Lista lista;
+    ListaPar listaPar;
+    ListaImpar ListaImpar;
+
     criarLista(&lista);
+    criarListaPar(&listaPar);
+    criarListaImpar(&ListaImpar);
+
     int opcao;
 
     do{
@@ -255,6 +281,7 @@ int main(){
             case 8:
                 buscarLista(&lista);
             break;
+
             case 9:
                 printf("\nSaindo...\n");
             break;

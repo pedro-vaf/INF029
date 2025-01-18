@@ -194,7 +194,7 @@ void buscarLista(No **lista){
     } else { printf("\nO elemento não existe na lista\n"); }
 }
 
-/*Procedimento para dividir uma lista em duas (Par e Impar) - Esta função é mais detalhada para uma melhor compreensão */
+/*Procedimento para dividir uma lista em duas (Par e Impar) */
 void dividirLista(No **lista, No **listaPar, No **listaImpar) {
     No * temp = *lista;      /* Ponteiro para percorrer a lista original */
     No * parAtual = NULL;    /* Ponteiro para o final da listaPar */
