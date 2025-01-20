@@ -13,29 +13,9 @@ typedef struct {
    int tamanho;
 } Lista;
 
-typedef struct {
-    No * inicioPar;
-    int tamanhoPar;
-} ListaPar;
-
-typedef struct {
-    No * inicioImpar;
-    int tamanhoImpar;
-} ListaImpar;
-
 void criarLista(Lista * lista){
     lista -> inicio = NULL;
     lista -> tamanho = 0;
-}
-
-void criarListaPar(ListaPar * listaPar){
-    listaPar -> inicioPar = NULL;
-    listaPar -> tamanhoPar = 0;
-}
-
-void criarListaImpar(ListaImpar * ListaImpar){
-    ListaImpar -> inicioImpar = NULL;
-    ListaImpar -> tamanhoImpar = 0;
 }
 
 /* Procedimento para inserir no inicio */
@@ -50,7 +30,7 @@ void inserirInicioLista(Lista *lista){
         novo -> proximo = lista -> inicio;
         lista -> inicio = novo;
         lista -> tamanho++;
-    } else { printf("Erro ao alocar memÃ³ria!\n"); }
+    } else { printf("Erro ao alocar memória!\n"); }
 }
 
 /* Procedimento para inserir no fim */
@@ -148,7 +128,7 @@ void removerLista (Lista * lista){
 /* Procedimento para remover valor especifico da lista */
 void removerValorEspecifoLista(Lista * lista){
     int num;
-    printf("\nInsira o valor ordenado na lista -> ");
+    printf("\nInsira o valor que será removido da lista -> ");
     scanf("%d", &num);
 
     No * remover, * temp = NULL;
@@ -236,12 +216,8 @@ int menuLista(int opcao){
 }
 int main(){
     Lista lista;
-    ListaPar listaPar;
-    ListaImpar ListaImpar;
 
     criarLista(&lista);
-    criarListaPar(&listaPar);
-    criarListaImpar(&ListaImpar);
 
     int opcao;
 
