@@ -27,19 +27,3 @@ Este repositório contém implementações práticas de **estruturas de dados di
 
 - **Pilha (`pilha.c`)**  
   Estrutura LIFO (Last In, First Out), com operações de empilhar e desempilhar.
-
-## Objetivo
-
-- Explorar como as estruturas de dados dinâmicas funcionam em um nível mais baixo, manipulando ponteiros e memória diretamente.  
-- Servir como material de referência para estudantes e desenvolvedores.
-
-## Próximos Passos
-
-- Em breve, será publicado um artigo detalhado explicando a implementação de cada uma dessas estruturas, com dicas práticas e exemplos. Fique ligado! 🚀
-
-## Contribuição
-
-Sugestões e melhorias são sempre bem-vindas! 🤝  
-Sinta-se à vontade para abrir uma **issue** ou enviar um **pull request**.
-
----
