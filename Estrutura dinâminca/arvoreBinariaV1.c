@@ -48,7 +48,6 @@ void imprimirInOrdem(NoArvore * raiz) {
 }
 
 int main() {
-
     NoArvore * raiz = NULL;
     int opcao, elemento;
 
@@ -87,5 +86,4 @@ int main() {
     } while (opcao != 3);
 
     return 0;
-    
 }
