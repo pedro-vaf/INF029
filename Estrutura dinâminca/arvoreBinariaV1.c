@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Árvore binária - Versão 1 (Usando retorno)*/
+/* Árvore binária - Versão 1 (Usando retorno) */
 
 typedef struct no {
     int valor;
