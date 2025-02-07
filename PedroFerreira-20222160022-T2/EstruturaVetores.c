@@ -176,17 +176,6 @@ int getDadosDeTodasEstruturasAuxiliares(int vetorAux[])
             kcont = kcont + 1;
         }
     }
-    
-    for (int icont = 0; icont < tam; icont = icont + 1){
-        for (int jcont = 0; jcont < estruturaAuxiliar[icont].quantidade; jcont = jcont + 1){
-            if (estruturaAuxiliar[icont].quantidade == 0){
-                vazio = vazio + 1;
-            } else {
-                vetorAux[kcont] = estruturaAuxiliar[icont].elementos[jcont];
-                kcont = kcont + 1; 
-            }
-        }
-    }
 
     if (vazio == 10){
         return TODAS_ESTRUTURAS_AUXILIARES_VAZIAS;
