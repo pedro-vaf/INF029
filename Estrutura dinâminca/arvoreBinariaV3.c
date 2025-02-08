@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Árvore binária - Versão 1 (Usando retorno) */
+/* Árvore binária - Versão 1 (Sem retorno e sem recursão) */
 
 typedef struct no {
     int valor;
@@ -9,26 +9,25 @@ typedef struct no {
     struct no *direita;
 } NoArvore;
 
-NoArvore * inserir(NoArvore * raiz, int elemento) {
-    if (raiz == NULL) {
-        NoArvore * novo = malloc(sizeof(NoArvore));
-        
-        if (novo) {
-            novo -> valor = elemento;
-            novo -> direita = NULL;
-            novo -> esquerda = NULL;
-            return novo;
+NoArvore * raiz =  NULL;
 
-        } else { printf("Erro ao alocar mémoria.\n"); }
-
-    } else {
-        if (elemento < raiz -> valor) {
-            raiz -> esquerda = inserir(raiz -> esquerda, elemento);
+void inserir (NoArvore ** raiz, int elemento){
+    NoArvore * temp = (*raiz);
+    while (temp) {
+        if (elemento < temp -> valor){
+            raiz = &temp -> esquerda;
         } else {
-            raiz -> direita = inserir(raiz -> direita, elemento);
+            raiz = &temp -> direita;
         }
-        return raiz;
-    }
+
+        temp = *raiz;
+    }   
+
+    temp = malloc(sizeof(NoArvore));
+    temp -> valor = elemento;
+    temp -> esquerda = NULL;
+    temp -> direita = NULL;
+    (*raiz) = temp;
 }
 
 void imprimirPreOrdem(NoArvore * raiz) {
@@ -73,7 +72,7 @@ int main() {
             case 1:
                 printf("\nQual elemento irá ser inserido -> ");
                 scanf("%d", &elemento);
-                raiz = inserir(raiz, elemento);
+                inserir(&raiz, elemento);
             break;
             
             case 2:

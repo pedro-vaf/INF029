@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Árvore binária - Versão 1 (Usando retorno) */
+/* Árvore binária - Versão 2 (Sem retorno) */
 
 typedef struct no {
     int valor;
@@ -9,25 +9,21 @@ typedef struct no {
     struct no *direita;
 } NoArvore;
 
-NoArvore * inserir(NoArvore * raiz, int elemento) {
-    if (raiz == NULL) {
-        NoArvore * novo = malloc(sizeof(NoArvore));
-        
-        if (novo) {
-            novo -> valor = elemento;
-            novo -> direita = NULL;
-            novo -> esquerda = NULL;
-            return novo;
+NoArvore * raiz =  NULL;
 
-        } else { printf("Erro ao alocar mémoria.\n"); }
+void inserir (NoArvore ** raiz, int elemento){
+    if (*raiz == NULL) {
+        *raiz = malloc(sizeof(NoArvore));
+        (*raiz) -> valor = elemento;
+        (*raiz) -> direita = NULL;
+        (*raiz) -> esquerda = NULL;
 
     } else {
-        if (elemento < raiz -> valor) {
-            raiz -> esquerda = inserir(raiz -> esquerda, elemento);
+        if (elemento < (*raiz) -> valor) {
+            inserir(&((*raiz) -> esquerda), elemento);
         } else {
-            raiz -> direita = inserir(raiz -> direita, elemento);
+            inserir(&((*raiz) -> direita), elemento);
         }
-        return raiz;
     }
 }
 
@@ -73,7 +69,7 @@ int main() {
             case 1:
                 printf("\nQual elemento irá ser inserido -> ");
                 scanf("%d", &elemento);
-                raiz = inserir(raiz, elemento);
+                inserir(&raiz, elemento);
             break;
             
             case 2:
