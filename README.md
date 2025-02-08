@@ -28,5 +28,5 @@ Este repositório contém implementações práticas de **estruturas de dados di
 - **Pilha (`pilha.c`)**  
   Estrutura LIFO (Last In, First Out), com operações de empilhar e desempilhar.
 
-- **Árvore binária (`arvoreBinariaV3.c`)**  
+- **Árvore binária (`arvoreBinaria.c`)**  
   Estrutura possui 3 formas de inserção.
