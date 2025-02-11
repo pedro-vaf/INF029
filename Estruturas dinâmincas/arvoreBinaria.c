@@ -11,6 +11,8 @@ Forma 2 - Usando o método de recursão, chamando a função dentro de si mesmo mas 
 resultado, mudando o valor original pelo endereço da variável 
 
 Forma 3 - Não usa recursão, insere de forma interativa 
+
+Por: Pedro Aquino
 */
 
 typedef struct no {
@@ -19,7 +21,7 @@ typedef struct no {
     struct no *direita;
 } NoArvore;
 
-NoArvore * inserirForma1(NoArvore * raiz, int elemento) {
+NoArvore * inserirForma1(NoArvore * raiz, int elemento) { 
     if (raiz == NULL) {
         NoArvore * novo = malloc(sizeof(NoArvore));
         
@@ -41,7 +43,7 @@ NoArvore * inserirForma1(NoArvore * raiz, int elemento) {
     }
 }
 
-void inserirForma2(NoArvore ** raiz, int elemento){
+void inserirForma2(NoArvore ** raiz, int elemento){ 
     if (*raiz == NULL) {
         *raiz = malloc(sizeof(NoArvore));
         (*raiz) -> valor = elemento;
