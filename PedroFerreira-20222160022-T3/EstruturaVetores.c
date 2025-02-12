@@ -56,7 +56,6 @@ int inserirNumeroEmEstrutura(int posicao, int valor)
     estruturaAuxiliar[posicao].elementos[quantidade] = valor; 
     estruturaAuxiliar[posicao].quantidade = estruturaAuxiliar[posicao].quantidade + 1;
 
-    salvarArquivo("dados.txt");
     return SUCESSO;
 }
 
