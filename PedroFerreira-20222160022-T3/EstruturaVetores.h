@@ -26,7 +26,7 @@ void destruirListaEncadeadaComCabecote(No **inicio);
 
 /* Funções para o trabalho 3 */
 int carregarArquivo(const char *dados);
-void salvarArquivo(const char *dados);
+int salvarArquivo(const char *dados);
 
 void inicializar();
 void finalizar();

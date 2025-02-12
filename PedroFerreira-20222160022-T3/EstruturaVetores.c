@@ -22,6 +22,8 @@ void inicializar(){
         estruturaAuxiliar[icont].quantidade = 0;
         estruturaAuxiliar[icont].tamanho = 0;
     }
+
+    carregarArquivo("dados.txt");  // Carrega os dados apenas uma vez
 }
 
 
@@ -322,73 +324,91 @@ void destruirListaEncadeadaComCabecote(No **inicio)
 
 void finalizar()
 {   
+    salvarArquivo("dados.txt");  // Salva após as operações
+
     for(int icont = 0; icont < tam; icont = icont + 1){
         free(estruturaAuxiliar[icont].elementos);
         estruturaAuxiliar[icont].elementos = NULL; 
     }
+
 }
 
-int carregarArquivo(const char *dados) {
-    FILE * arquivo = fopen(dados, "r");
+int carregarArquivo(const char * dados){ 
+    FILE *arquivo = fopen(dados, "r");
+    
+    if(arquivo == NULL) {
 
-    if(arquivo == NULL){
-        return ERRO;
-    }
+        arquivo = fopen(dados, "w");
 
-    int posicao, tamanho, numero, retorno;
-    char line[7000];
-
-    while (fgets(line, sizeof(line), arquivo) != NULL) {
-        line[strcspn(line, "\n")] = '\0';
-
-        char * slice = strtok(line, ";");
-        if(slice == NULL) continue;
-
-        posicao = atoi(slice) - 1;
-        slice = strtok(NULL, ";");
-        if(slice == NULL) continue;
-
-        tamanho = atoi(slice);
-        retorno = criarEstruturaAuxiliar(posicao, tamanho);
-
-        if(retorno != SUCESSO){
-            fclose(arquivo);
-            return retorno;
+        if(arquivo == NULL){
+            printf("\nErro ao criar arquivo.\n");
+            return ERRO;
+        } else {
+            printf("\nArquivo criado com sucesso.\n");
         }
 
-        while((slice = strtok(NULL, ";")) != NULL){
-            retorno = inserirNumeroEmEstrutura(posicao, atoi(slice));
+    } else {
+
+        int posicao;
+        int tamanho;
+        int numero;
+        int retorno;
+
+        char line[5000];
+
+        while(fgets(line, sizeof(line), arquivo) != NULL){
+            line[strcspn(line, "\n")] = '\0';
+
+            char *slice = strtok(line, ";");
+            if(slice == NULL){
+                continue;
+            }
+           
+            posicao = atoi(slice) - 1;
+            slice = strtok(NULL, ";");
+            tamanho = atoi(slice);
+
+            retorno = criarEstruturaAuxiliar(posicao, tamanho);
+
             if(retorno != SUCESSO){
                 fclose(arquivo);
-                return retorno;
+                return ERRO;
+            }
+
+            while((slice = strtok(NULL, ";")) != NULL){
+                retorno = inserirNumeroEmEstrutura(posicao, atoi(slice));
+                if(retorno != SUCESSO){
+                    fclose(arquivo);
+                    return ERRO;
+                }
             }
         }
+
+        fclose(arquivo);
+        return SUCESSO;
     }
-
-    fclose(arquivo);
-
-    return SUCESSO;
 }
+int salvarArquivo(const char * dados){
+    FILE *arquivo = fopen("dados.txt", "w");
 
-void salvarArquivo(const char *dados){
-    FILE *arquivo = fopen(dados, "w");
-
-    if (arquivo != NULL) {
+    if (arquivo == NULL) {
+        printf("Erro ao abrir arquivo.\n");
+        return ERRO;
+    } else {
         for(int icont = 0; icont < tam; icont = icont + 1){
+            EstruturaAuxiliar *temp = &estruturaAuxiliar[icont];
 
-            EstruturaAuxiliar * temp = &estruturaAuxiliar[icont];
-    
-            if (temp -> elementos != NULL && temp -> quantidade > 0 && temp -> tamanho > 0) {
-                fprintf(arquivo, "%d;%d", icont + 1, temp -> tamanho);
-    
+            if(temp->elementos != NULL && temp->quantidade > 0){
+                fprintf(arquivo, "%d;%d", icont + 1, temp->tamanho);
+
                 for(int jcont = 0; jcont < temp -> quantidade; jcont = jcont + 1){
                     fprintf(arquivo, ";%d", temp -> elementos[jcont]);
                 }
-
                 fprintf(arquivo, "\n");
             }
         }
     }
-    
+
     fclose(arquivo);
+    return SUCESSO;
 }

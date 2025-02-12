@@ -130,6 +130,43 @@ NoArvore * buscaInterativa(NoArvore * raiz, int elemento){
     return NULL;
 }
 
+int altura(NoArvore * raiz){
+    if (raiz) {
+        int esquerda = altura(raiz -> esquerda);
+        int direita = altura(raiz -> direita);
+
+        if (esquerda > direita){
+            return esquerda + 1;
+        } else {
+            return direita + 1;
+        }
+
+    } else { return -1; }
+}
+
+int quantidadeNo(NoArvore * raiz) {
+    if (raiz) {
+
+        return 1 + quantidadeNo(raiz -> esquerda) + quantidadeNo(raiz -> direita);
+        
+    } else { return 0; }
+
+    /*
+    Operador ternário
+    return (raiz) ? return 1 + quantidadeNo(raiz -> esquerda) + quantidadeNo(raiz -> direita) : 0;
+    */
+}
+
+int quantidadeFolhas(NoArvore * raiz){
+    if (raiz){
+        if (raiz -> esquerda == NULL && raiz -> direita == NULL) {
+            return 1;
+        } else {
+            return (raiz -> esquerda) + quantidadeFolhas(raiz -> direita);
+        }
+    } else { return 0; }
+}
+
 int main() {
     NoArvore *busca, * raiz = NULL;
     int opcao, elemento;
@@ -140,6 +177,9 @@ int main() {
         printf("1 - Inserir na árvore\n");
         printf("2 - Imprimir árvore\n");
         printf("3 - Buscar elemento na árvore\n");
+        printf("4 - Imprimir a altura da árvore binária\n");
+        printf("5 - Imprimir a quantidade de Nó da árvore binária\n");
+        printf("6 - Imprimir a quantidade de folhas da árvore binária\n");
         printf("Opção referente -> ");
         scanf("%d", &opcao);
 
@@ -180,7 +220,19 @@ int main() {
                     printf("\nValor %d foi encontrado na árvore!\n", busca -> valor);
                 } else { printf("\nO valor não existe na árvore!\n"); }
             break;
+            
+            case 4:
+                printf("\nAltura da árvore -> %d\n", altura(raiz));
+            break;
 
+            case 5:
+                printf("\nQuantidade de nó -> %d\n", quantidadeNo(raiz));
+            break;
+
+            case 6:
+                printf("\nQuantidade de folhas -> %d\n", quantidadeFolhas(raiz));
+            break;
+            
             default:
                 printf("\nErro!\n");
             break;

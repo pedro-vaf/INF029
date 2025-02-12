@@ -24,10 +24,8 @@ void testeInserirComEstrutura();
 int main()
 {
     inicializar();
-    carregarArquivo("dados.txt");  // Carrega os dados apenas uma vez
     testarArquivoPrimeiraVez();
     testarArquivoSegundaVez();
-    salvarArquivo("dados.txt");  // Salva após as operações
     finalizar();
 
     /*
