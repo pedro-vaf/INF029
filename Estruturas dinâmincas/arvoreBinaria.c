@@ -162,7 +162,7 @@ int quantidadeFolhas(NoArvore * raiz){
         if (raiz -> esquerda == NULL && raiz -> direita == NULL) {
             return 1;
         } else {
-            return (raiz -> esquerda) + quantidadeFolhas(raiz -> direita);
+            return quantidadeFolhas(raiz -> esquerda) + quantidadeFolhas(raiz -> direita);
         }
     } else { return 0; }
 }
