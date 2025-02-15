@@ -167,6 +167,59 @@ int quantidadeFolhas(NoArvore * raiz){
     } else { return 0; }
 }
 
+NoArvore * remover(NoArvore * raiz, int elemento) {
+    if (raiz) {
+        if (elemento == raiz -> valor){
+            if (raiz -> esquerda == NULL && raiz -> direita == NULL){
+                /* Remove nó folha */
+                free(raiz);
+                printf("Elemento folha removido: %d!\n", elemento);
+                printf("O nó removido é uma folha\n");
+                return NULL;
+
+            } else {
+                /* Remove nós que possuem 2 filhos */
+                if (raiz -> esquerda != NULL && raiz -> direita != NULL){
+                    NoArvore * temp = raiz -> esquerda;
+                    while (temp -> direita != NULL) {
+                        raiz -> valor = temp -> valor;
+                        temp -> valor = elemento;
+                        raiz -> esquerda = remover(raiz -> esquerda, elemento);
+                        return raiz;
+
+                        printf("Elemento folha removido: %d!\n", elemento);
+                        printf("O nó removido era com 2 folha\n");
+                    }
+                    
+                } else {
+                    /* Remove nó que possui 1 filho */
+                    NoArvore * temp;
+                    if (raiz -> esquerda != NULL){
+                        temp = raiz -> esquerda;
+                    } else {
+                        temp = raiz -> direita;
+                    }
+
+                    free(raiz);
+                    printf("Elemento folha removido: %d!\n", elemento);
+                    printf("O nó removido era com 1 filho\n");
+                    return temp;
+                }
+
+            }
+
+        } else {
+            if (elemento < raiz -> valor) {
+                raiz -> esquerda = remover(raiz -> esquerda, elemento);
+            } else {
+                raiz -> direita = remover(raiz -> direita, elemento);
+            }
+            
+            return raiz;
+        }
+    } else { printf("Valor não encontrado.\n"); return NULL; }
+}
+
 int main() {
     NoArvore *busca, * raiz = NULL;
     int opcao, elemento;
@@ -180,6 +233,7 @@ int main() {
         printf("4 - Imprimir a altura da árvore binária\n");
         printf("5 - Imprimir a quantidade de Nó da árvore binária\n");
         printf("6 - Imprimir a quantidade de folhas da árvore binária\n");
+        printf("7 - Remover um nó\n");
         printf("Opção referente -> ");
         scanf("%d", &opcao);
 
@@ -194,7 +248,7 @@ int main() {
                 scanf("%d", &elemento);
                 /*  raiz = inserirForma1(raiz, elemento); */
                 /*  inserirForma2(raiz, elemento); */
-                /*  inserirForma3(&raiz, elemento); */
+                    inserirForma3(&raiz, elemento); 
             break;
             
             case 2:
@@ -232,7 +286,14 @@ int main() {
             case 6:
                 printf("\nQuantidade de folhas -> %d\n", quantidadeFolhas(raiz));
             break;
-            
+
+            case 7:
+                printf("\nQual nó deseja remover -> ");
+                scanf("%d", &elemento);
+
+                raiz = remover(raiz, elemento);
+            break;
+
             default:
                 printf("\nErro!\n");
             break;
