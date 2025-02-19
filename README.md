@@ -30,3 +30,6 @@ Este repositório contém implementações práticas de **estruturas de dados di
 
 - **Árvore Binária (`arvoreBinaria.c`)**  
   Estrutura possui 3 formas de inserção.
+
+  - **Tabela Hash**  
+  Estrutura de função eficiente de busca, com duas formas de resolução de conflitos, adcionando em outra posição do vetor (posição seguinte) ou criação de uma lista encadeada.
