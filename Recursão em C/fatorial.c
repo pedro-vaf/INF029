@@ -15,7 +15,7 @@ int fatorial (int elemento){
 
 int main(){
 
-    int elemento, resultado;
+    int elemento;
 
     printf("*** Digite um elemento e visualize o seu fatorial ***\n");
     printf("Insira o elemento (inteiro positivo) -> ");
