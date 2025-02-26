@@ -363,7 +363,7 @@ int carregarArquivo(const char * dados){
                 continue;
             }
            
-            posicao = atoi(slice) - 1;
+            posicao = atoi(slice);
             slice = strtok(NULL, ";");
             tamanho = atoi(slice);
 
