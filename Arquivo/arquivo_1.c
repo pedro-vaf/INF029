@@ -26,7 +26,6 @@ void escrever(char f[]){
         }
 
         fclose(file);
-        
     } else { printf("Erro ao abrir arquivo!"); }
 }
 
@@ -42,7 +41,6 @@ void ler(char f[]){
        }
 
        fclose(file);
-        
     } else { printf("Erro ao abrir arquivo!"); }
 
 }

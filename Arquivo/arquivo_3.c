@@ -45,6 +45,7 @@ void ler (char f[]){
         fclose(file);
     } else { printf("Erro ao abrir arquivo!"); }
 }
+
 int main(){
     char arquivo[] = ("arquivo.txt");
 

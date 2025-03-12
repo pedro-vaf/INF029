@@ -47,9 +47,7 @@ void ler (char f[]){
                 printf("\n -> %s", texto);
             }
         }
-        
-        
-        
+
         fclose(file);
     } else { printf("Erro ao abrir arquivo!\n"); }
 }

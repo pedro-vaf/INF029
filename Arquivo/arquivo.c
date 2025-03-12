@@ -26,7 +26,7 @@ int main(){
             scanf("%c", &letra);
         }
 
-        rewind(file); /* Se o arquivo já exisitir não é necessário */
+        rewind(file); 
         
         printf("\nTexto lido do arquivo\n");
         while (!feof(file))
